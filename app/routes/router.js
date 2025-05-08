@@ -47,6 +47,8 @@ router.get('/', (req, res)=> {
     })
 })
 
+//forms
+
 // heroForm
 router.get('/heroForm', (req, res) => {
     res.render('pages/heroForm', {
@@ -55,6 +57,26 @@ router.get('/heroForm', (req, res) => {
         endpoints
     })
 })
+
+// powerForm
+router.get('/powerForm/:heroId', (req, res) => {
+
+    const heroId = req.params.heroId
+
+    axios.get(`http://localhost:${PORT}/api/power`)
+        .then(resp => {
+            res.render('pages/powerForm', {
+                title: 'Power Form',
+                name: 'Add Powers',
+                endpoints,
+                heroId,
+                powers: resp.data
+            })
+
+        })
+})
+
+//pages
 
 for (let i = 0; i < endpoints.length; i++) {
     //  do stuff

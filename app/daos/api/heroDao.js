@@ -143,6 +143,18 @@ const heroDao = {
                 }
             }
         )
+    },
+
+    addPowers: (req, res, arr, id) => {
+        console.log(req.body)
+
+        con.execute(
+            `insert into hero_to_power set ${id} = ?;`,
+            arr,
+            (error, rows) => {
+                
+            }
+        )
     }
 }
 
